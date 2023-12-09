@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ha1sngLdrLBQlb5LWZVF3erRBUT+/HJD0Ol89nczzftQ8lloZsaequfpmRclo3M6BCGXK6wA7baAXa7wHJTgmA==",
+  "dgSpecHash": "uIwl0vdvItP5ItGuXK1A3OEgsVGw4NYx+i58RetFeXETRwWzEy+np/Dpr8hLM0zJWHT2bjYmxP/gH3LYZG6GTQ==",
   "success": true,
-  "projectFilePath": "D:\\netcore_angular\\datingapp\\api\\API.csproj",
+  "projectFilePath": "D:\\netcore_angular\\datingapp\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ACER\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

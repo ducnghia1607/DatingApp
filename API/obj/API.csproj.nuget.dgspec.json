@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\netcore_angular\\datingapp\\api\\API.csproj": {}
+    "D:\\netcore_angular\\datingapp\\API\\API.csproj": {}
   },
   "projects": {
-    "D:\\netcore_angular\\datingapp\\api\\API.csproj": {
+    "D:\\netcore_angular\\datingapp\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\netcore_angular\\datingapp\\api\\API.csproj",
+        "projectUniqueName": "D:\\netcore_angular\\datingapp\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "D:\\netcore_angular\\datingapp\\api\\API.csproj",
+        "projectPath": "D:\\netcore_angular\\datingapp\\API\\API.csproj",
         "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "D:\\netcore_angular\\datingapp\\api\\obj\\",
+        "outputPath": "D:\\netcore_angular\\datingapp\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
