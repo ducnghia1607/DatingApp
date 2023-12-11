@@ -4400,11 +4400,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\netcore_angular\\datingapp\\API\\API.csproj",
+      "projectUniqueName": "D:\\netcore_angular\\datingapp\\api\\API.csproj",
       "projectName": "API",
-      "projectPath": "D:\\netcore_angular\\datingapp\\API\\API.csproj",
+      "projectPath": "D:\\netcore_angular\\datingapp\\api\\API.csproj",
       "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-      "outputPath": "D:\\netcore_angular\\datingapp\\API\\obj\\",
+      "outputPath": "D:\\netcore_angular\\datingapp\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4470,13 +4470,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\netcore_angular\\datingapp\\API\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
