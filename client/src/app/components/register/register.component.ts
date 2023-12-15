@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -10,7 +11,10 @@ export class RegisterComponent {
   @Output() registerCancel = new EventEmitter();
   model: any = {};
 
-  constructor(private accountService: AccountService) {}
+  constructor(
+    private accountService: AccountService,
+    private toastService: ToastrService
+  ) {}
 
   register() {
     console.log(this.model);
@@ -20,7 +24,8 @@ export class RegisterComponent {
         localStorage.setItem('user', JSON.stringify(res.token));
       },
       error: (err) => {
-        console.log(err);
+        console.log(err.error);
+        this.toastService.error(err.error.title);
       },
     });
   }
