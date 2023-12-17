@@ -11,4 +11,6 @@ public class DataContext : DbContext
     }
 
     public DbSet<AppUser> Users { set; get; }
+
+    public DbSet<Photo> Photos { set; get; }
 }

@@ -136,3 +136,6 @@ D:\netcore_angular\datingapp\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System
 D:\netcore_angular\datingapp\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\netcore_angular\datingapp\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\netcore_angular\datingapp\api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\netcore_angular\datingapp\api\bin\Debug\net8.0\Data\UserSeedData.json
+D:\netcore_angular\datingapp\api\bin\Debug\net8.0\AutoMapper.dll
+D:\netcore_angular\datingapp\api\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
