@@ -72,9 +72,7 @@
         dropdown
         *ngIf="this.accountService.currentUser$ | async"
       >
-        <a href="#" class="text-light dropdown-toggle" dropdownToggle
-          >Welcome,user</a
-        >
+        <a class="text-light dropdown-toggle" dropdownToggle>Welcome,user</a>
         <ul class="dropdown-menu" *dropdownMenu>
           <li><a class="dropdown-item" href="#">Edit Profile</a></li>
           <li>

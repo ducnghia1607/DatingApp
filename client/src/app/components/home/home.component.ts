@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,9 +9,7 @@ export class HomeComponent {
   registerMode: boolean = false;
   users: any;
 
-  constructor(private http: HttpClient) {
-    this.getUsers();
-  }
+  constructor() {}
 
   registerToggle() {
     this.registerMode = !this.registerMode;
@@ -20,19 +17,5 @@ export class HomeComponent {
 
   registerCancel(mode: boolean) {
     this.registerMode = mode;
-  }
-
-  getUsers() {
-    this.http.get<any>('https://localhost:5000/api/users').subscribe({
-      next: (response) => {
-        this.users = response;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-      complete: () => {
-        console.log('This resquest is completed');
-      },
-    });
   }
 }

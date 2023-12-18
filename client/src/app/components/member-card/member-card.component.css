@@ -1,0 +1,30 @@
+.card:hover img {
+  transform: scale(1.2, 1.2);
+  opacity: 0.7;
+}
+
+.member-img {
+  transform: scale(1, 1);
+}
+
+.card-img-wapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate {
+  transition: all 0.5s ease-out;
+}
+
+.btn-list {
+  position: absolute;
+  bottom: -30%;
+  right: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.card:hover .btn-list {
+  opacity: 1;
+  bottom: 0;
+}
