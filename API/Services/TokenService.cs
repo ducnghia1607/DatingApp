@@ -16,12 +16,12 @@ public class TokenService : ITokenService
         _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
     }
 
-
+    //TokenService 
     string ITokenService.CreateToken(AppUser user)
     {
         // Create list claims contain information 
         var claims = new List<Claim>{
-            new Claim(JwtRegisteredClaimNames.NameId,user.UserName)
+            new Claim(JwtRegisteredClaimNames.NameId,user.UserName),
         };
 
         //create Credentials 

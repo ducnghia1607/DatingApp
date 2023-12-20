@@ -74,7 +74,9 @@
       >
         <a class="text-light dropdown-toggle" dropdownToggle>Welcome,user</a>
         <ul class="dropdown-menu" *dropdownMenu>
-          <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+          <li>
+            <a class="dropdown-item" routerLink="/member/edit">Edit Profile</a>
+          </li>
           <li>
             <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
           </li>

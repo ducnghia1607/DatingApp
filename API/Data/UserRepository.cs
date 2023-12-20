@@ -37,7 +37,7 @@ public class UserRepository : IUserRepository
         return await _context.Users.FindAsync(id);
     }
 
-    public async Task<AppUser> GetUserByIdUsernameAsync(string username)
+    public async Task<AppUser> GetUserByUsernameAsync(string username)
     {
         return await _context.Users.Include(x => x.Photos).SingleOrDefaultAsync<AppUser>(x => x.UserName == username);
     }

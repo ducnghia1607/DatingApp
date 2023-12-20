@@ -18,6 +18,7 @@ public static class ApplicationServicesExtension
         service.AddScoped<ITokenService, TokenService>();
         service.AddScoped<IUserRepository, UserRepository>();
         service.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        service.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
         return service;
     }
 }
