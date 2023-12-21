@@ -3,3 +3,8 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.user-img {
+  height: 40px;
+  border: 1px solid white;
+}

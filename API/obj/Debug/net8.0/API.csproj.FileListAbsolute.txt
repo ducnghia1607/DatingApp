@@ -139,3 +139,5 @@ D:\netcore_angular\datingapp\api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentic
 D:\netcore_angular\datingapp\api\bin\Debug\net8.0\Data\UserSeedData.json
 D:\netcore_angular\datingapp\api\bin\Debug\net8.0\AutoMapper.dll
 D:\netcore_angular\datingapp\api\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\netcore_angular\datingapp\api\bin\Debug\net8.0\CloudinaryDotNet.dll
+D:\netcore_angular\datingapp\api\bin\Debug\net8.0\Newtonsoft.Json.dll

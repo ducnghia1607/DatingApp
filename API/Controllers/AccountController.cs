@@ -44,7 +44,9 @@ public class AccountController : BaseApiController
     [HttpPost("login")] // api/account/login
     public async Task<ActionResult<UserDto>> Login(LoginDto account)
     {
-        var user = await _context.Users.SingleOrDefaultAsync(user => user.UserName == account.Username);
+        var user = await _context.Users
+        .Include(x => x.Photos)
+        .SingleOrDefaultAsync(user => user.UserName == account.Username);
         if (user == null) return Unauthorized();
 
         //Initializes a new instance of the HMACSHA512 class with the specified key data.
@@ -61,7 +63,8 @@ public class AccountController : BaseApiController
         return new UserDto
         {
             Username = user.UserName,
-            Token = _tokenService.CreateToken(user)
+            Token = _tokenService.CreateToken(user),
+            PhotoUrl = user.Photos.FirstOrDefault(x => x.isMain)?.Url
         };
 
     }
