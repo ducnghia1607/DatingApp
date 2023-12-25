@@ -4,6 +4,7 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,29 +15,32 @@ public class AccountController : BaseApiController
 
     private readonly DataContext _context;
     private readonly ITokenService _tokenService;
-    public AccountController(DataContext context, ITokenService tokenService)
+    private readonly IMapper _mapper;
+
+    public AccountController(DataContext context, ITokenService tokenService, IMapper mapper)
     {
         _context = context;
         _tokenService = tokenService;
+        _mapper = mapper;
     }
 
     [HttpPost("register")]  // api/account/register
     public async Task<ActionResult<UserDto>> Register(RegisterDto account)
     {
-        if (!await UserExists(account.UserName)) return BadRequest("Username already exists");
+        if (!await UserExists(account.Username)) return BadRequest("Username already exists");
         using var hmac = new HMACSHA512();
-        var user = new AppUser
-        {
-            UserName = account.UserName.ToLower(),
-            PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(account.Password)),
-            PasswordSalt = hmac.Key
-        };
+
+        var user = _mapper.Map<AppUser>(account);
+
+        user.Username = account.Username.ToLower();
+        user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(account.Password));
+        user.PasswordSalt = hmac.Key;
 
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
         return new UserDto
         {
-            Username = user.UserName,
+            Username = user.Username,
             Token = _tokenService.CreateToken(user)
         };
     }
@@ -46,7 +50,7 @@ public class AccountController : BaseApiController
     {
         var user = await _context.Users
         .Include(x => x.Photos)
-        .SingleOrDefaultAsync(user => user.UserName == account.Username);
+        .SingleOrDefaultAsync(user => user.Username == account.Username);
         if (user == null) return Unauthorized();
 
         //Initializes a new instance of the HMACSHA512 class with the specified key data.
@@ -62,7 +66,7 @@ public class AccountController : BaseApiController
 
         return new UserDto
         {
-            Username = user.UserName,
+            Username = user.Username,
             Token = _tokenService.CreateToken(user),
             PhotoUrl = user.Photos.FirstOrDefault(x => x.isMain)?.Url
         };
@@ -71,6 +75,6 @@ public class AccountController : BaseApiController
 
     public async Task<bool> UserExists(string username)
     {
-        return await _context.Users.AllAsync(user => user.UserName != username.ToLower());
+        return await _context.Users.AllAsync(user => user.Username != username.ToLower());
     }
 }

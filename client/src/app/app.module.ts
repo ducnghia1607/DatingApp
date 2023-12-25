@@ -22,6 +22,9 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { MemberEditComponent } from './components/member-edit/member-edit.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { PhotoEditorComponent } from './components/photo-editor/photo-editor.component';
+import { InputTextComponent } from './components/form/input-text/input-text.component';
+import { DatePickerComponent } from './components/form/date-picker/date-picker.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import { PhotoEditorComponent } from './components/photo-editor/photo-editor.com
     MemberCardComponent,
     MemberEditComponent,
     PhotoEditorComponent,
+    InputTextComponent,
+    DatePickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,7 @@ import { PhotoEditorComponent } from './components/photo-editor/photo-editor.com
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    BsDatepickerModule.forRoot(),
   ],
   providers: [
     {

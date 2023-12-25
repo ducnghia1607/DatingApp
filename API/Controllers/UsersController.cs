@@ -73,7 +73,7 @@ public class UsersController : BaseApiController
         {
             var actionName = nameof(GetUser);
             var createdResource = _mapper.Map<PhotoDto>(photo); // new created data 
-            var routeValues = new { username = user.UserName }; // api/users/{username} link assign to location header
+            var routeValues = new { username = user.Username }; // api/users/{username} link assign to location header
             return CreatedAtAction(actionName, routeValues, createdResource);
         }
 

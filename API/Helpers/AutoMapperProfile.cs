@@ -1,4 +1,5 @@
-﻿using API.Entities;
+﻿using API.DTOs;
+using API.Entities;
 using AutoMapper;
 
 namespace API;
@@ -17,5 +18,7 @@ public class AutoMapperProfile : Profile
         CreateMap<Photo, PhotoDto>();
 
         CreateMap<MemberUpdateDto, AppUser>();
+
+        CreateMap<RegisterDto, AppUser>();
     }
 }

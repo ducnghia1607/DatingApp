@@ -55,6 +55,11 @@ export class PhotoEditorComponent {
       if (response) {
         var photo = JSON.parse(response);
         this.member?.photos.push(photo);
+        if (this.member && this.user && photo.isMain) {
+          this.member.photoUrl = photo.url;
+          this.user.photoUrl = photo.url;
+          this.accountService.setCurrentUser(this.user);
+        }
       }
     };
   }

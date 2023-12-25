@@ -25,6 +25,7 @@ export class AccountService {
         if (response) {
           this.setCurrentUser(response);
         }
+        return response;
       })
     );
   }

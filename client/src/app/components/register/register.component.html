@@ -1,29 +1,89 @@
-<form #registerForm="ngForm" autocomplete="off">
+<form [formGroup]="registerForm" autocomplete="off">
   <h1 class="text-center text-primary">Sign up</h1>
   <hr />
-  <input
-    type="text"
-    class="form-control mb-4"
-    name="username"
-    placeholder="Username"
-    [(ngModel)]="model.username"
-  />
-  <input
-    type="password"
-    class="form-control mb-4"
-    name="password"
-    placeholder="Password"
-    [(ngModel)]="model.password"
-  />
 
+  <div class="mb-3 d-flex">
+    <label class="form-check-label me-4"> I am a</label>
+    <div class="form-check me-4">
+      <input
+        type="radio"
+        name=""
+        id="male"
+        value="male"
+        formControlName="gender"
+        class="form-check-input"
+      />
+      <label class="form-check-label" for="male"> Male </label>
+    </div>
+
+    <div class="form-check">
+      <input
+        type="radio"
+        name=""
+        id="female"
+        value="female"
+        formControlName="gender"
+        class="form-check-input"
+      />
+      <label class="form-check-label" for="female"> Female </label>
+    </div>
+  </div>
+
+  <app-input-text
+    [label]="'Username'"
+    [formControl]="$any(registerForm.controls['username'])"
+  ></app-input-text>
+  <app-input-text
+    [label]="'Password'"
+    [type]="'password'"
+    [formControl]="$any(registerForm.controls['password'])"
+  ></app-input-text>
+  <app-input-text
+    [label]="'Confirm Password'"
+    [type]="'password'"
+    [formControl]="$any(registerForm.controls['confirmPassword'])"
+  ></app-input-text>
+
+  <app-input-text
+    [label]="'Know As'"
+    [formControl]="$any(registerForm.controls['knownAs'])"
+  ></app-input-text>
+
+  <app-date-picker
+    [label]="'Date of birth'"
+    [maxDate]="maxDate"
+    [formControl]="$any(registerForm.controls['dateOfBirth'])"
+  ></app-date-picker>
+
+  <app-input-text
+    [label]="'Country'"
+    [formControl]="$any(registerForm.controls['country'])"
+  ></app-input-text>
+
+  <app-input-text
+    [label]="'City'"
+    [formControl]="$any(registerForm.controls['city'])"
+  ></app-input-text>
+
+  <div class="row">
+    <ul *ngIf="validationErrors">
+      <li *ngFor="let error of validationErrors">
+        <p class="text-danger">{{ error }}</p>
+      </li>
+    </ul>
+  </div>
   <div class="text-center mt-2">
     <button
       class="btn btn-primary btn-lg me-4"
       type="submit"
       (click)="register()"
+      [disabled]="!registerForm.valid"
     >
       Register
     </button>
     <button class="btn btn-info btn-lg" (click)="cancel()">Cancel</button>
   </div>
 </form>
+
+<p>{{ registerForm.value | json }}</p>
+<p>isValid: {{ registerForm.valid | json }}</p>
