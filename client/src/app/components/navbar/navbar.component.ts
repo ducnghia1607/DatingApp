@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, of } from 'rxjs';
-import { User } from 'src/app/Models/User';
+
 import { AccountService } from 'src/app/services/account.service';
-import { BsDropdownDirective } from 'ngx-bootstrap/dropdown/bs-dropdown.directive';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 
 @Component({

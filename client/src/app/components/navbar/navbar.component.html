@@ -78,7 +78,7 @@
           class="user-img ms-2"
         />
         <a class="text-light dropdown-toggle" dropdownToggle
-          >Welcome {{ user.username }}</a
+          >Welcome {{ user.knownAs | titlecase }}</a
         >
         <ul class="dropdown-menu" *dropdownMenu>
           <li>

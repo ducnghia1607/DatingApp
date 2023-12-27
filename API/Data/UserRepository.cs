@@ -3,6 +3,7 @@ using API.Entities;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace API;
 
@@ -25,11 +26,25 @@ public class UserRepository : IUserRepository
                 .FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<MemberDto>> GetMembersAsync()
+    public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
     {
-        return await _context.Users
-                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-                 .ToListAsync();
+        // return IQueryable<MemberDto>  không phải đối tượng cần làm việc nên chọn AsNoTracking 
+        var query = _context.Users.AsQueryable();
+
+        query = query.Where(user => user.Username != userParams.CurrentUsername);
+        query = query.Where(user => user.Gender == userParams.Gender);
+        var timenow = DateOnly.FromDateTime(DateTime.Now);
+        var minDob = timenow.AddYears(-userParams.MaxAge - 1);
+        var maxDob = timenow.AddYears(-userParams.MinAge);
+        query = query.Where(user => user.DateOfBirth > minDob && user.DateOfBirth < maxDob);
+
+        query = userParams.OrderBy switch
+        {
+            "created" => query.OrderByDescending(x => x.Created),
+            _ => query.OrderByDescending(x => x.LastActive)
+        };
+
+        return await PagedList<MemberDto>.CreateAsync(query.AsNoTracking().ProjectTo<MemberDto>(_mapper.ConfigurationProvider), userParams.pageNumber, userParams.PageSize);
     }
 
     public async Task<AppUser> GetUserByIdAsync(int id)

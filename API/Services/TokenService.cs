@@ -21,7 +21,8 @@ public class TokenService : ITokenService
     {
         // Create list claims contain information 
         var claims = new List<Claim>{
-            new Claim(JwtRegisteredClaimNames.NameId,user.Username),
+            new Claim(JwtRegisteredClaimNames.NameId,user.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.UniqueName,user.Username),
         };
 
         //create Credentials 

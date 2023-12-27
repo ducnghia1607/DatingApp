@@ -21,10 +21,25 @@ public class UsersController : BaseApiController
 
     [AllowAnonymous]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+    public async Task<ActionResult<PagedList<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
     {
-        return Ok(await _userRepository.GetMembersAsync());
+        var currentUser = await _userRepository.GetUserByUsernameAsync(User.GetUserName());
+
+        // return Ok(await _userRepository.GetMembersAsync());
+        if (string.IsNullOrEmpty(userParams.CurrentUsername))
+        {
+            userParams.CurrentUsername = currentUser.Username;
+        }
+        if (string.IsNullOrEmpty(userParams.Gender))
+        {
+            userParams.Gender = currentUser.Gender == "female" ? "male" : "female";
+        }
+
+        var users = await _userRepository.GetMembersAsync(userParams);
+        Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages));
+        return Ok(users);
     }
+
 
     [HttpGet("{username}")]  // api /users/2
     public async Task<ActionResult<MemberDto>> GetUser(string username)
