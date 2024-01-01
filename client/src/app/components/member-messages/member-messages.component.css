@@ -1,0 +1,10 @@
+.img-circle {
+  height: 50px;
+  width: 50px;
+}
+
+.chat {
+  padding: 0;
+  border: none;
+  border-bottom: 1px dotted #ccc;
+}

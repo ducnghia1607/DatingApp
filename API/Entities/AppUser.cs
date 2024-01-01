@@ -24,9 +24,12 @@ public class AppUser
     public string? Introduction { get; set; }
     public List<Photo> Photos { get; set; } = new();
 
-    // public int GetAge()
-    // {
-    //     return DateOfBirth.CalculateAge();
-    // }
+    public List<UserLike> LikedUsers { get; set; } = new();
+
+    public List<UserLike> LikedByUsers { get; set; } = new();
+
+    public List<Message> SentMessages { get; set; } = new();
+
+    public List<Message> ReceivedMessages { get; set; } = new();
 
 }

@@ -1,0 +1,76 @@
+<div class="" *ngIf="messages.length == 0">
+  <h3>No messages yet... say hi by using the message box below</h3>
+</div>
+
+<div class="container">
+  <div class="row">
+    <ul style="list-style-type: none">
+      <li class="" *ngFor="let message of messages">
+        <div class="card d-flex flex-row-reverse align-items-center chat">
+          <img
+            class="img-circle rounded-circle me-4"
+            src="{{ message.senderPhotoUrl || './assets/user.png' }}"
+            alt="img of user"
+          />
+          <div class="card-body">
+            <small
+              class="text-body-secondary"
+              *ngIf="
+                message.dateRead == null && message.senderUsername != username
+              "
+              style="border: none; padding: none; margin-bottom: 10px"
+            >
+              <span>
+                <i class="fa fa-clock-o"></i>
+                {{ message.dateSent + "Z" | timeago }}
+                <span class="text-danger">(unread)</span>
+              </span>
+            </small>
+            <small
+              class="text-body-secondary"
+              *ngIf="
+                message.dateRead != null &&
+                message.recipientUsername == username
+              "
+              style="border: none; padding: none; margin-bottom: 10px"
+            >
+              <span>
+                <i class="fa fa-clock-o"></i>
+                {{ message.dateSent + "Z" | timeago }}
+                <span class="text-success"
+                  >(read {{ message.dateRead + "Z" | timeago }})</span
+                >
+              </span>
+            </small>
+
+            <p class="card-text">
+              {{ message.content }}
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <form
+        class="input-group mt-4"
+        #messageForm="ngForm"
+        (ngSubmit)="sendMessage()"
+      >
+        <input
+          type="text"
+          placeholder="Send a private message"
+          class="form-control"
+          [(ngModel)]="messageContent"
+          name="messageContent"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!messageForm.valid"
+        >
+          Send
+        </button>
+      </form>
+    </ul>
+  </div>
+</div>

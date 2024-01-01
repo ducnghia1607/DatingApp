@@ -13,12 +13,16 @@
         </button>
       </li>
       <li class="list-inline-item">
-        <button class="btn btn-lg btn-danger">
+        <button class="btn btn-lg btn-danger" (click)="addLike(member)">
           <i class="fa fa-heart"></i>
         </button>
       </li>
       <li class="list-inline-item">
-        <button class="btn btn-lg btn-danger">
+        <button
+          class="btn btn-lg btn-danger"
+          routerLink="/members/{{ member.userName }}"
+          [queryParams]="{ tab: 'Messages' }"
+        >
           <i class="fa fa-envelope"></i>
         </button>
       </li>
