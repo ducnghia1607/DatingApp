@@ -36,7 +36,7 @@ public class LikesRepository : ILikesRepository
 
         var likedUser = users.Select(user => new LikeDto
         {
-            UserName = user.Username,
+            UserName = user.UserName,
             Age = user.DateOfBirth.CalculateAge(),
             KnownAs = user.KnownAs,
             City = user.City,

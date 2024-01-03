@@ -1,0 +1,21 @@
+<div class="container tab-panel">
+  <h3>Admin Panel</h3>
+  <tabset class="member-tabset">
+    <tab
+      heading="User Management"
+      id="tab1"
+      class="member-tabset"
+      *appHasRole="['Admin']"
+    >
+      <app-user-management></app-user-management>
+    </tab>
+    <tab
+      heading="Photo Management"
+      id="tab2"
+      class="member-tabset"
+      *appHasRole="['Admin', 'Moderator']"
+    >
+      <app-photo-management></app-photo-management>
+    </tab>
+  </tabset>
+</div>

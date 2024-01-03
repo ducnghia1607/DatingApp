@@ -27,6 +27,12 @@ import { DatePickerComponent } from './components/form/date-picker/date-picker.c
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
+import { HasRoleDirective } from './directives/has-role.directive';
+import { UserManagementComponent } from './components/admin/user-management/user-management.component';
+import { PhotoManagementComponent } from './components/admin/photo-management/photo-management.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { RoleModalComponent } from './components/admin/role-modal/role-modal.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +51,11 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     PhotoEditorComponent,
     InputTextComponent,
     DatePickerComponent,
+    AdminPanelComponent,
+    HasRoleDirective,
+    UserManagementComponent,
+    PhotoManagementComponent,
+    RoleModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +68,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   providers: [
     {

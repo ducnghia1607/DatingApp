@@ -1,5 +1,7 @@
 using API;
 using API.Data;
+using API.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,8 +35,10 @@ try
 {
     var context = service.GetRequiredService<DataContext>();
     // Reset database
+    var userManager = service.GetRequiredService<UserManager<AppUser>>();
+    var roleManager = service.GetRequiredService<RoleManager<AppRole>>();
     await context.Database.MigrateAsync();
-    await Seed.SeedUsers(context);
+    await Seed.SeedUsers(userManager, roleManager);
 }
 catch (Exception ex)
 {

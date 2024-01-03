@@ -21,7 +21,7 @@ public class UserRepository : IUserRepository
     public async Task<MemberDto> GetMemberByUsernameAsync(string username)
     {
         return await _context.Users
-                .Where(user => user.Username == username)
+                .Where(user => user.UserName == username)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
     }
@@ -31,7 +31,7 @@ public class UserRepository : IUserRepository
         // return IQueryable<MemberDto>  không phải đối tượng cần làm việc nên chọn AsNoTracking 
         var query = _context.Users.AsQueryable();
 
-        query = query.Where(user => user.Username != userParams.CurrentUsername);
+        query = query.Where(user => user.UserName != userParams.CurrentUsername);
         query = query.Where(user => user.Gender == userParams.Gender);
         var timenow = DateOnly.FromDateTime(DateTime.Now);
         var minDob = timenow.AddYears(-userParams.MaxAge - 1);
@@ -54,7 +54,7 @@ public class UserRepository : IUserRepository
 
     public async Task<AppUser> GetUserByUsernameAsync(string username)
     {
-        return await _context.Users.Include(x => x.Photos).SingleOrDefaultAsync<AppUser>(x => x.Username == username);
+        return await _context.Users.Include(x => x.Photos).SingleOrDefaultAsync<AppUser>(x => x.UserName == username);
     }
 
 
