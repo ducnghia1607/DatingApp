@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ImLd18FvRSKnUGtMibngB5Vp6JKgQaHRim1sBmoh8ZoixD5wrBXWBfjazzEhF+YDr9S263oRIU5HiM07qbiNIQ==",
+  "dgSpecHash": "rAKPqMrkURVLGNa25bCOsosBCvud6IP/YD6ioGn8BPq3TsqRveNyBxFv0Pdjwhiv+zNSzTxtVKI49iDEpsfz8A==",
   "success": true,
-  "projectFilePath": "D:\\netcore_angular\\datingapp\\api\\API.csproj",
+  "projectFilePath": "D:\\netcore_angular\\datingapp\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ACER\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
