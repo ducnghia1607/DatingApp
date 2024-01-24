@@ -1,11 +1,17 @@
-<div class="" *ngIf="messages.length == 0">
+<div
+  class=""
+  *ngIf="(this.messageService.messageThread$ | async)?.length === 0"
+>
   <h3>No messages yet... say hi by using the message box below</h3>
 </div>
 
 <div class="container">
   <div class="row">
     <ul style="list-style-type: none">
-      <li class="" *ngFor="let message of messages">
+      <li
+        class=""
+        *ngFor="let message of this.messageService.messageThread$ | async"
+      >
         <div class="card d-flex flex-row-reverse align-items-center chat">
           <img
             class="img-circle rounded-circle me-4"

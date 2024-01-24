@@ -41,6 +41,26 @@ public static class IdentityExtension
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]))
 
         };
+
+        option.Events = new JwtBearerEvents
+        {
+
+            OnMessageReceived = context =>
+            {
+                var accessToken = context.Request.Query["access_token"];
+                var path = context.HttpContext.Request.Path;
+                if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs"))
+                {
+                    context.Token = accessToken;
+
+                }
+                return Task.CompletedTask;
+            }
+        }
+
+     ;
+
+
     });
 
         service.AddAuthorization(
@@ -49,6 +69,7 @@ public static class IdentityExtension
                 opt.AddPolicy("RequiredAdminRole", policy => policy.RequireRole("Admin"));
                 opt.AddPolicy("RequiredModeratorOrAdminRole", policy => policy.RequireRole("Admin", "Moderator"));
             }
+
         );
 
         return service;
