@@ -33,6 +33,8 @@ import { UserManagementComponent } from './components/admin/user-management/user
 import { PhotoManagementComponent } from './components/admin/photo-management/photo-management.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { RoleModalComponent } from './components/admin/role-modal/role-modal.component';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomRouteReuseStrategy } from './services/customRouteReuseStrategy';
 
 @NgModule({
   declarations: [
@@ -85,6 +87,10 @@ import { RoleModalComponent } from './components/admin/role-modal/role-modal.com
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
       multi: true,
+    },
+    {
+      provide: RouteReuseStrategy,
+      useClass: CustomRouteReuseStrategy,
     },
   ],
   bootstrap: [AppComponent],

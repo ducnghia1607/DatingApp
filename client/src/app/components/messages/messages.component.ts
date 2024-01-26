@@ -17,6 +17,7 @@ export class MessagesComponent {
   loading: boolean = false;
   constructor(private messageService: MessageService) {
     this.loadMessages();
+    // console.log(this.messages);
   }
 
   loadMessages() {

@@ -28,7 +28,7 @@
             >
               <span>
                 <i class="fa fa-clock-o"></i>
-                {{ message.dateSent + "Z" | timeago }}
+                {{ message.dateSent | timeago }}
                 <span class="text-danger">(unread)</span>
               </span>
             </small>
@@ -42,9 +42,9 @@
             >
               <span>
                 <i class="fa fa-clock-o"></i>
-                {{ message.dateSent + "Z" | timeago }}
+                {{ message.dateSent | timeago }}
                 <span class="text-success"
-                  >(read {{ message.dateRead + "Z" | timeago }})</span
+                  >(read {{ message.dateRead | timeago }})</span
                 >
               </span>
             </small>

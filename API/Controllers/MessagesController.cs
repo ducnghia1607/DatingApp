@@ -44,13 +44,27 @@ public class MessagesController : BaseApiController
         return BadRequest("Failed to send message");
     }
 
+    // [HttpGet]
+    // public async Task<PagedList<MessageDto>> GetMessagesForUser([FromQuery] MessageParams messageParams)
+    // {
+    //     var username = User.GetUserName();
+    //     messageParams.Username = username;
+    //     var messages = await _messageRepository.GetMessagesForUser(messageParams);
+    //     Response.AddPaginationHeader(new PaginationHeader(messageParams.pageNumber, messageParams.PageSize, messages.TotalCount, messages.TotalPages));
+    //     return messages;
+    // }
+
     [HttpGet]
-    public async Task<PagedList<MessageDto>> GetMessagesForUser([FromQuery] MessageParams messageParams)
+    public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessagesForUser([FromQuery]
+        MessageParams messageParams)
     {
-        var username = User.GetUserName();
-        messageParams.Username = username;
+        messageParams.Username = User.GetUserName();
+
         var messages = await _messageRepository.GetMessagesForUser(messageParams);
-        Response.AddPaginationHeader(new PaginationHeader(messageParams.pageNumber, messageParams.PageSize, messages.TotalCount, messages.TotalPages));
+
+        Response.AddPaginationHeader(new PaginationHeader(messages.CurrentPage,
+            messages.PageSize, messages.TotalCount, messages.TotalPages));
+
         return messages;
     }
 
