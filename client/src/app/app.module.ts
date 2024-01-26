@@ -35,6 +35,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { RoleModalComponent } from './components/admin/role-modal/role-modal.component';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomRouteReuseStrategy } from './services/customRouteReuseStrategy';
+import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { CustomRouteReuseStrategy } from './services/customRouteReuseStrategy';
     UserManagementComponent,
     PhotoManagementComponent,
     RoleModalComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

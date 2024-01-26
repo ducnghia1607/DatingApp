@@ -7,7 +7,16 @@
 
 <div class="container">
   <div class="row">
-    <ul style="list-style-type: none">
+    <ul
+      #scrollMessage
+      style="
+        list-style-type: none;
+        height: 500px;
+        overflow-y: scroll;
+        scroll-behavior: auto;
+      "
+      [scrollTop]="scrollMessage.scrollHeight"
+    >
       <li
         class=""
         *ngFor="let message of this.messageService.messageThread$ | async"
@@ -46,6 +55,17 @@
                 <span class="text-success"
                   >(read {{ message.dateRead | timeago }})</span
                 >
+              </span>
+            </small>
+
+            <small
+              class="text-body-secondary"
+              *ngIf="message.senderUsername == username"
+              style="border: none; padding: none; margin-bottom: 10px"
+            >
+              <span>
+                <i class="fa fa-clock-o"></i>
+                {{ message.dateSent | timeago }}
               </span>
             </small>
 

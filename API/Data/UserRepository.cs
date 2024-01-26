@@ -57,16 +57,16 @@ public class UserRepository : IUserRepository
         return await _context.Users.Include(x => x.Photos).SingleOrDefaultAsync<AppUser>(x => x.UserName == username);
     }
 
+    public async Task<string> GetUserGender(string username)
+    {
+        return await _context.Users.Where(x => x.UserName == username).Select(x => x.Gender).FirstOrDefaultAsync();
+    }
 
     public async Task<IEnumerable<AppUser>> GetUsersAsync()
     {
         return await _context.Users.Include(x => x.Photos).ToListAsync();
     }
 
-    public async Task<bool> SaveAllAsync()
-    {
-        return await _context.SaveChangesAsync() > 0;
-    }
 
     // And this just tells our Entity Framework Tracker that something has changed with the entity, the user
     // that we've passed in here, and we're not saving anything from this method at this point.

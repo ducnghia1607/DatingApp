@@ -33,25 +33,6 @@ public class MessageRepository : IMessageRepository
         return await _context.Messages.FindAsync(id);
     }
 
-    // public async Task<PagedList<MessageDto>> GetMessagesForUser(MessageParams messageParams)
-    // {
-    //     // var query = _context.Messages.
-    //     // OrderByDescending(x => x.DateSent).AsQueryable();
-
-    //     var query = _context.Messages
-    //       .OrderByDescending(x => x.DateSent)
-    //       .AsQueryable();
-    //     query = messageParams.Container switch
-    //     {
-    //         "Inbox" => query.Where(x => x.RecipientUsername == messageParams.Username && x.RecipientDeleted == false),
-    //         "Outbox" => query.Where(x => x.SenderUsername == messageParams.Username && x.SenderDeleted == false),
-    //         _ => query.Where(x => x.DateRead == null && x.RecipientUsername == messageParams.Username && x.RecipientDeleted == false)
-    //     };
-
-    //     // var messages = _mapper.ProjectTo<MessageDto>(query);
-    //     var messages = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
-    //     return await PagedList<MessageDto>.CreateAsync(messages, messageParams.pageNumber, messageParams.PageSize);
-    // }
 
     public async Task<PagedList<MessageDto>> GetMessagesForUser(MessageParams messageParams)
     {
@@ -76,15 +57,13 @@ public class MessageRepository : IMessageRepository
 
     public async Task<IEnumerable<MessageDto>> GetMessagesThread(string currentUsername, string recipientUsername)
     {
-        var messages = await _context.Messages
-            .Include(m => m.Sender).ThenInclude(u => u.Photos)
-            .Include(m => m.Recipient).ThenInclude(u => u.Photos)
+        var query = _context.Messages
             .Where(m => m.SenderUsername == currentUsername && m.RecipientUsername == recipientUsername && m.SenderDeleted == false
             || m.SenderUsername == recipientUsername && m.RecipientUsername == currentUsername && m.RecipientDeleted == false
-        ).OrderBy(m => m.DateSent).ToListAsync();
+        ).OrderBy(m => m.DateSent).AsQueryable();
 
         // var thread = await messages
-        var unreadMessages = messages.Where(
+        var unreadMessages = query.Where(
            m => m.DateRead == null && m.RecipientUsername == currentUsername
         ).ToList();
 
@@ -95,17 +74,13 @@ public class MessageRepository : IMessageRepository
                 m.DateRead = DateTime.UtcNow;
             }
 
-            await _context.SaveChangesAsync();
+
         }
 
-        return _mapper.Map<IEnumerable<MessageDto>>(messages);
+        return await query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider).ToListAsync();
 
     }
 
-    public async Task<bool> SaveAllAsync()
-    {
-        return await _context.SaveChangesAsync() > 0;
-    }
 
     public void AddGroup(Group group)
     {

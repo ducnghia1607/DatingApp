@@ -31,6 +31,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
+
+
 app.MapControllers();
 
 // Add endpoints to our client find our hub?
